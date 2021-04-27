@@ -41,4 +41,17 @@ public class SubjectController {
 
         return subjectConverter.fromEntityToDto(savedSubject);
     }
+
+    @PutMapping(value = "/{id}")
+    public SubjectDto updateSubject(@PathVariable Long id, @RequestBody SubjectDto request){
+        Subject subject = subjectConverter.fromDtoToEntity(request);
+        subject = subjectService.updateSubject(subject,id);
+
+        return subjectConverter.fromEntityToDto(subject);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteSubject(@PathVariable Long id){
+        subjectService.deleteSubject(id);
+    }
 }
