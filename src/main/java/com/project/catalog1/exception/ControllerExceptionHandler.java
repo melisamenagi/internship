@@ -1,6 +1,8 @@
 package com.project.catalog1.exception;
 
 import com.project.catalog1.web.dto.ErrorDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,10 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 @ResponseBody
 public class ControllerExceptionHandler {
 
+    private Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+
     @ExceptionHandler({NotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorDto handleNotFound(HttpServletRequest request, Exception exception) {
         BaseException baseException = (BaseException) exception;
+
+        logger.warn("Not found exception", exception);
         ErrorDto errorDto = new ErrorDto(baseException.getErrorCode(), baseException.getMessage(), HttpStatus.NOT_FOUND.value());
 
         return errorDto;
@@ -25,6 +31,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorDto handleException(HttpServletRequest request, Exception exception) {
+        logger.error("An error occured", exception);
         return new ErrorDto("Internal.server.error", "An error occured", HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
 }

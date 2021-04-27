@@ -1,8 +1,13 @@
 package com.project.catalog1.web.dto;
 
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.NotNull;
+
 public class SubjectDto {
 
     private Long id;
+    @NotNull(message = "name.must.not.be.empty")
     private String name;
     private Integer creditPoints;
     private Boolean isOptional;

@@ -1,8 +1,12 @@
-package com.project.catalog1.web.dto;
+package com.project.catalog1.web;
 
 import com.project.catalog1.converter.SubjectConverter;
+import com.project.catalog1.exception.ControllerExceptionHandler;
 import com.project.catalog1.model.Subject;
 import com.project.catalog1.service.SubjectService;
+import com.project.catalog1.web.dto.SubjectDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/subject")
 public class SubjectController {
 
+    private Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
     private final SubjectService subjectService;
     private final SubjectConverter subjectConverter;
     
@@ -39,6 +44,7 @@ public class SubjectController {
         Subject subjectToBeSaved = subjectConverter.fromDtoToEntity(request);
         Subject savedSubject = subjectService.saveSubject(subjectToBeSaved);
 
+        logger.info("Saved new subject {}", savedSubject);
         return subjectConverter.fromEntityToDto(savedSubject);
     }
 
