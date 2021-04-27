@@ -28,4 +28,15 @@ public class SubjectConverter {
 
         return subjectDto;
     }
+
+    public Subject fromDtoToEntity(SubjectDto dto){
+        Subject entity = new Subject();
+        entity.setName(dto.getName());
+        entity.setCreditPoints(dto.getCreditPoints());
+        entity.setOptional(dto.getOptional());
+        entity.setCoursePercent(dto.getSubjectScoringDto().getCoursePercent());
+        entity.setSeminaryPercent(dto.getSubjectScoringDto().getSeminaryPercent());
+
+        return entity;
+    }
 }

@@ -4,10 +4,7 @@ import com.project.catalog1.converter.SubjectConverter;
 import com.project.catalog1.model.Subject;
 import com.project.catalog1.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +32,13 @@ public class SubjectController {
         Subject subject = subjectService.getSubject(id);
 
         return subjectConverter.fromEntityToDto(subject);
+    }
+
+    @PostMapping(value = "")
+    public SubjectDto saveNewSubject(@RequestBody SubjectDto request){
+        Subject subjectToBeSaved = subjectConverter.fromDtoToEntity(request);
+        Subject savedSubject = subjectService.saveSubject(subjectToBeSaved);
+
+        return subjectConverter.fromEntityToDto(savedSubject);
     }
 }

@@ -29,4 +29,11 @@ public class SubjectService {
             throw new RuntimeException("Subject not found");
         }
     }
+
+
+    public Subject saveSubject(Subject subjectToBeSaved) {
+        Subject savedSubject = subjectRepository.save(subjectToBeSaved);
+
+        return savedSubject;
+    }
 }
