@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubjectRepository extends JpaRepository<Subject, Long>  { //tipul clasei si tipul cheii primare
+
+    void deleteByName(String name);
+
+    void deleteByCreditPoints(Integer creditPoints);
 }

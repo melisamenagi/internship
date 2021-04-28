@@ -3,38 +3,13 @@ package com.project.catalog1.web.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-public class TeacherDto {
+//used when we need to send all the Teacher related information (e.g.: if we need to display them from Teacher's user profile
+public class TeacherDto extends TeacherBasicInfoDto{
 
-    private Long id;
-    private String firstName;
-    private String lastName;
+    private String cnp;
     private LocalDate birthDate;
-    private LocalDate employementDate;
-    private List<SubjectDto> subjects;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private LocalDate employmentDate;
+    private Long salary;
 
     public LocalDate getBirthDate() {
         return birthDate;
@@ -44,19 +19,37 @@ public class TeacherDto {
         this.birthDate = birthDate;
     }
 
-    public LocalDate getEmployementDate() {
-        return employementDate;
+    public LocalDate getEmploymentDate() {
+        return employmentDate;
     }
 
-    public void setEmployementDate(LocalDate employementDate) {
-        this.employementDate = employementDate;
+    public void setEmploymentDate(LocalDate employementDate) {
+        this.employmentDate = employementDate;
     }
 
-    public List<SubjectDto> getSubjects() {
-        return subjects;
+    public Long getSalary() {
+        return salary;
     }
 
-    public void setSubjects(List<SubjectDto> subjects) {
-        this.subjects = subjects;
+    public void setSalary(Long salary) {
+        this.salary = salary;
+    }
+
+    public String getCnp() {
+        return cnp;
+    }
+
+    public void setCnp(String cnp) {
+        this.cnp = cnp;
+    }
+
+    @Override
+    public String toString() {
+        return "TeacherDto{" +
+                "cnp='" + cnp + '\'' +
+                ", birthDate=" + birthDate +
+                ", employementDate=" + employmentDate +
+                ", salary=" + salary +
+                '}';
     }
 }

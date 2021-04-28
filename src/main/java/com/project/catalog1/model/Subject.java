@@ -25,6 +25,17 @@ public class Subject {
     @Column(name = "seminary_percent")
     private Integer seminaryPercent;
 
+    public Subject() {
+    }
+
+    public Subject(String name, Integer creditPoints, Boolean isOptional, Integer coursePercent, Integer seminaryPercent) {
+        this.name = name;
+        this.creditPoints = creditPoints;
+        this.isOptional = isOptional;
+        this.coursePercent = coursePercent;
+        this.seminaryPercent = seminaryPercent;
+    }
+
     public Long getId() {
         return id;
     }
